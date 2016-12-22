@@ -6,4 +6,8 @@ public class MenuController : MonoBehaviour {
 	public void LoadGame () {
 		SceneManager.LoadScene("main", LoadSceneMode.Single);
 	}
+
+	public void GoToOptions () {
+		SceneManager.LoadScene("options", LoadSceneMode.Single);
+	}
 }
