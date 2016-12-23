@@ -84,6 +84,35 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public bool CanBeMine () {
+		switch (selectedLevel) {
+			case Level.Easy:
+				if (minesCount < easyLevelMines) {
+					return true;
+				} else {
+					return false;
+				}
+			case Level.Medium:
+				if (minesCount < mediumLevelMinesCount) {
+					return true;
+				} else {
+					return false;
+				}			
+			case Level.Hard:
+				if (minesCount < hardLevelMinesCount) {
+					return true;
+				} else {
+					return false;
+				}
+			default:
+				return false;	
+		}
+	}
+
+	public void IncrementMinesInGame () {
+		minesCount++;
+	}
+
 	private void MakeSingleton () {
 		if (Instance == null) {
 			Instance = this;
