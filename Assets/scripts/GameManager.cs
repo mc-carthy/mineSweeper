@@ -35,6 +35,16 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	private int minesCount;
+	public int MinesCount {
+		get {
+			return minesCount;
+		}
+		set {
+			minesCount = value;
+		}
+	}
+
 	[SerializeField]
 	private GameObject minefield;
 
@@ -44,7 +54,6 @@ public class GameManager : MonoBehaviour {
 	private int easyLevelMines = 14;
 	private int mediumLevelMinesCount = 20;
 	private int hardLevelMinesCount = 30;
-	private int minesCount;
 
 	private void Awake () {
 		MakeSingleton();
@@ -81,6 +90,10 @@ public class GameManager : MonoBehaviour {
 			}
 		} else {
 			minesCount = 0;
+			Minefield[] children = GetComponentsInChildren<Minefield>();
+			foreach (Minefield child in children) {
+				Destroy(child.gameObject);
+			}
 		}
 	}
 

@@ -16,6 +16,10 @@ public class Minefield : MonoBehaviour {
 
 	private SpriteRenderer sprRen;
 
+	private void Awake () {
+		sprRen = GetComponent<SpriteRenderer>();
+	}
+
 	private void Start () {
 		isMine = Random.value < 0.15f;
 
@@ -29,7 +33,21 @@ public class Minefield : MonoBehaviour {
 	}
 
 	private void OnMouseDown () {
+		if (isMine) {
+			MatrixGrid.ShowAllMines();
+		} else {
+			string[] index = gameObject.name.Split('-');
+			int x = int.Parse(index[0]);
+			int y = int.Parse(index[1]);
 
+			ShowNearMinesCount(MatrixGrid.NearMines(x, y));
+
+			MatrixGrid.InvestigateMines(x, y, new bool[GameManager.Instance.Rows, GameManager.Instance.Columns]);
+
+			if (MatrixGrid.IsGameFinished()) {
+				Debug.Log("You won");
+			}
+		}
 	}
 
 	public void ShowMine () {

@@ -76,15 +76,24 @@ public class MatrixGrid {
 
 			visited[x, y] = true;
 
-			for (int i = x - 1; i < x + 2; i++) {
-				for (int j = y - 1; j < y + 2; j++) {
-					if (i != 0 && j != 0) {
-						if (MineAtCoord(i, j)) {
-							InvestigateMines(x, y, visited);
-						}
-					}
-				}
-			}
+			// for (int i = x - 1; i < x + 2; i++) {
+			// 	for (int j = y - 1; j < y + 2; j++) {
+			// 		if (i != 0 && j != 0) {
+			// 			if (MineAtCoord(i, j)) {
+			// 				InvestigateMines(x, y, visited);
+			// 			}
+			// 		}
+			// 	}
+			// }
+
+			InvestigateMines(x - 1, y - 1, visited);
+			InvestigateMines(x - 1, y, visited);
+			InvestigateMines(x - 1, y + 1, visited);
+			InvestigateMines(x, y - 1, visited);
+			InvestigateMines(x, y + 1, visited);
+			InvestigateMines(x + 1, y - 1, visited);
+			InvestigateMines(x + 1, y, visited);
+			InvestigateMines(x + 1, y + 1, visited);
 		}
 	}
 
